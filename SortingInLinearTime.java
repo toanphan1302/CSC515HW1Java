@@ -8,11 +8,17 @@ import java.util.Random;
 public class SortingInLinearTime {
     public static void main(String[] args) {
         int size = 10;
-        int max = 999;
+        int max = 9999;
         int[] arr = new int[size];
         GenerateRandomIntArray(arr, max);
         PrintArray(arr);
         CountingSort(arr, max);
+        PrintArray(arr);
+
+        System.out.println("-------------------------------------------------------------");
+        GenerateRandomIntArray(arr, max);
+        PrintArray(arr);
+        LSDRadixSort(arr, 4);
         PrintArray(arr);
     }
 
@@ -51,9 +57,34 @@ public class SortingInLinearTime {
         }
     }
 
-    static void LSBRadixSort(int[] arr, int numberOfDigits) {
+    static void LSDRadixSort(int[] arr, int numberOfDigits) {
+        System.out.println("LSB Radix Sort");
         // Create 10 - buckets represent digit from 0 ~ 9
-        ArrayList<String>[] buckets = new ArrayList[10];
+        ArrayList<Integer>[] buckets = new ArrayList[10];
+
         // Iterate through everry digit of number in the array
+        for (int i = 0; i < numberOfDigits; i++) {
+
+            // Re-Initialize each bucket array list every new iteration
+            for (int j = 0; j < 10; j++) {
+                buckets[j] = new ArrayList<Integer>();
+            }
+            for (int arrIndex = 0; arrIndex < arr.length; arrIndex++) {
+
+                // Get current digit for the number
+                int currentDigit = (arr[arrIndex] / ((int) (Math.pow(10, i)))) % 10;
+                // Put number into appropriate buckets
+                buckets[currentDigit].add(arr[arrIndex]);
+            }
+
+            // Put numbers in buckets back to array
+            int arrIndex = 0;
+            for (int bucketIndex = 0; bucketIndex < 10; bucketIndex++) {
+                for (int number : buckets[bucketIndex]) {
+                    arr[arrIndex] = number;
+                    arrIndex++;
+                }
+            }
+        }
     }
 }
