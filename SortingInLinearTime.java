@@ -1,5 +1,6 @@
 import java.io.Console;
 import java.nio.file.ClosedWatchServiceException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -48,5 +49,11 @@ public class SortingInLinearTime {
                 buckets[bucketIndex]--;
             }
         }
+    }
+
+    static void LSBRadixSort(int[] arr, int numberOfDigits) {
+        // Create 10 - buckets represent digit from 0 ~ 9
+        ArrayList<String>[] buckets = new ArrayList[10];
+        // Iterate through everry digit of number in the array
     }
 }
