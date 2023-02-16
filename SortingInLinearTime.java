@@ -61,14 +61,14 @@ public class SortingInLinearTime {
         System.out.println("LSB Radix Sort");
         // Create 10 - buckets represent digit from 0 ~ 9
         ArrayList<Integer>[] buckets = new ArrayList[10];
+        // Initialize each bucket array list every new iteration
+        for (int j = 0; j < 10; j++) {
+            buckets[j] = new ArrayList<Integer>();
+        }
 
         // Iterate through everry digit of number in the array
         for (int i = 0; i < numberOfDigits; i++) {
 
-            // Re-Initialize each bucket array list every new iteration
-            for (int j = 0; j < 10; j++) {
-                buckets[j] = new ArrayList<Integer>();
-            }
             for (int arrIndex = 0; arrIndex < arr.length; arrIndex++) {
 
                 // Get current digit for the number
@@ -84,6 +84,8 @@ public class SortingInLinearTime {
                     arr[arrIndex] = number;
                     arrIndex++;
                 }
+                // empty the bucket
+                buckets[bucketIndex].clear();
             }
         }
     }
