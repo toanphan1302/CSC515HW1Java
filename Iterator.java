@@ -45,6 +45,8 @@ class MyIterator<T> {
     }
 
     // ctors
+    // When initialize CurrentNode point to a new reference that Next is point to
+    // the head of the list
     public MyIterator(MySimpleSinglyLinkedList<T> commingList) {
         CurrentNode = new Node(null);
         CurrentNode.Next = commingList.Head;
